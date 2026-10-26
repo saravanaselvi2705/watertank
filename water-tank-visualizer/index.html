@@ -1,0 +1,132 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Visualize trapped rainwater between blocks using an interactive water tank calculator.">
+  <title>Water Tank Visualizer</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Water Tank Visualizer home">
+      <span class="brand-icon">W</span>
+      <span>Water Tank <span class="brand-light">Visualizer</span></span>
+    </a>
+    <span class="header-label">ALGORITHM CHALLENGE</span>
+  </header>
+
+  <main class="container">
+    <section class="intro">
+      <p class="eyebrow">INTERACTIVE ALGORITHM</p>
+      <h1>Water Tank Problem</h1>
+      <p class="intro-text">
+        Visualize how much rainwater can be trapped between blocks
+        of different heights.
+      </p>
+    </section>
+
+    <section class="input-panel">
+      <div class="section-heading">
+        <div>
+          <h2>Block configuration</h2>
+          <p>Enter non-negative integer heights separated by commas.</p>
+        </div>
+        <button id="exampleBtn" class="text-button" type="button">
+          Load example
+        </button>
+      </div>
+
+      <form id="tankForm">
+        <label for="heightsInput">Block heights</label>
+
+        <div class="input-row">
+          <input
+            id="heightsInput"
+            type="text"
+            value="0,4,0,0,0,6,0,6,4,0"
+            placeholder="e.g. 0,4,0,0,0,6,0,6,4,0"
+            autocomplete="off"
+            required
+          >
+          <button class="primary-button" type="submit">
+            Calculate water
+          </button>
+        </div>
+
+        <p id="errorMessage" class="error-message" role="alert"></p>
+      </form>
+
+      <div class="quick-info">
+        <span>Example input</span>
+        <code>[0, 4, 0, 0, 0, 6, 0, 6, 4, 0]</code>
+      </div>
+    </section>
+
+    <section class="results-section" aria-live="polite">
+      <div class="results-heading">
+        <div>
+          <h2>Tank visualization</h2>
+          <p>Blue represents trapped water; brown represents solid blocks.</p>
+        </div>
+        <span id="blockCount" class="count-badge">10 blocks</span>
+      </div>
+
+      <div class="chart-card">
+        <div class="legend">
+          <span><i class="legend-block"></i> Blocks</span>
+          <span><i class="legend-water"></i> Trapped water</span>
+        </div>
+
+        <div id="chartContainer" class="chart-container">
+          <p class="placeholder">Your tank visualization will appear here.</p>
+        </div>
+      </div>
+
+      <div class="metric-grid">
+        <article class="metric-card">
+          <span>Total trapped water</span>
+          <div class="metric-value">
+            <strong id="waterTotal">18</strong>
+            <span>units</span>
+          </div>
+        </article>
+
+        <article class="metric-card">
+          <span>Number of blocks</span>
+          <div class="metric-value">
+            <strong id="totalBlocks">10</strong>
+            <span>blocks</span>
+          </div>
+        </article>
+
+        <article class="metric-card">
+          <span>Maximum height</span>
+          <div class="metric-value">
+            <strong id="maxHeight">6</strong>
+            <span>units</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="explanation-panel">
+      <h2>How it works</h2>
+      <p>
+        At each position, the water level is determined by the smaller
+        of the tallest blocks on its left and right. Subtract the
+        current block height to find the trapped water.
+      </p>
+      <div class="formula">
+        Water at position i = max(0, min(leftMax, rightMax) − height[i])
+      </div>
+    </section>
+
+    <footer class="footer">
+      Water Tank Visualizer <span>·</span> Built with HTML, CSS and Vanilla JavaScript
+    </footer>
+  </main>
+</body>
+</html>
